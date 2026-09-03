@@ -1,0 +1,108 @@
+.shell {
+  display: flex;
+  min-height: 100vh;
+  background: #f0ebe0;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────────────────────── */
+.sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  background: var(--ink);
+  display: flex;
+  flex-direction: column;
+  padding: 28px 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 24px 28px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 16px;
+}
+.brandIcon { font-size: 1.4rem; color: var(--accent); }
+.brandText {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0 12px;
+  flex: 1;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  border-radius: 8px;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 400;
+  transition: background 0.18s, color 0.18s;
+}
+.navItem:hover { background: rgba(255,255,255,0.07); color: #fff; }
+.navActive     { background: rgba(200,120,58,0.22); color: var(--accent-light) !important; }
+
+.navIcon { font-size: 1rem; width: 20px; text-align: center; }
+
+.sidebarBottom {
+  padding: 16px 12px 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.viewSite {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 14px;
+  border-radius: 8px;
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+  font-size: 0.82rem;
+  transition: color 0.2s;
+}
+.viewSite:hover { color: rgba(255,255,255,0.8); }
+
+.logoutBtn {
+  padding: 9px 14px;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.4);
+  font-size: 0.82rem;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+}
+.logoutBtn:hover { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.8); }
+
+/* ── Main area ───────────────────────────────────────────────────────────── */
+.main {
+  flex: 1;
+  padding: 40px 52px;
+  overflow-y: auto;
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .shell { flex-direction: column; }
+  .sidebar { width: 100%; height: auto; position: static; flex-direction: row; flex-wrap: wrap; padding: 16px; }
+  .main { padding: 24px 16px; }
+}

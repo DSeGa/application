@@ -1,0 +1,80 @@
+// This is your Prisma schema file
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Направления подготовки ───────────────────────────────────────────────────
+model Direction {
+  id            Int       @id @default(autoincrement())
+  code          String    // "11.03.01"
+  shortName     String    // "РСС"
+  kafName       String    // "Радиосвязи и систем связи"
+  headTitle     String    // "Заведующему кафедрой РСС"
+  headNameFull  String    // "Иванов Иван Иванович" (И.п., склоняется автоматически)
+  kafAddress    String    @default("")
+  isActive      Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  practiceTypes PracticeType[]
+  applications  Application[]
+}
+
+// ─── Виды практик ─────────────────────────────────────────────────────────────
+model PracticeType {
+  id              Int       @id @default(autoincrement())
+  directionId     Int
+  name            String    // "Учебная практика: ознакомительная практика"
+  correctForm     String    @default("") // "учебной практики: ознакомительной практики"
+  supervisorName  String    // "Иванов Иван Иванович" (И.п., полное)
+  sortOrder       Int       @default(0)
+  isActive        Boolean   @default(true)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  direction     Direction     @relation(fields: [directionId], references: [id], onDelete: Cascade)
+  applications  Application[]
+}
+
+// ─── Заявления ────────────────────────────────────────────────────────────────
+model Application {
+  id            Int       @id @default(autoincrement())
+  directionId   Int?
+  practiceTypeId Int?
+  place         String    // "кафедра" | "предприятие"
+  enterpriseName    String  @default("")
+  enterpriseAddress String  @default("")
+  dateStart     String
+  dateEnd       String
+  studentGroup  String
+  studentFio    String
+  generatedAt   DateTime  @default(now())
+
+  direction    Direction?    @relation(fields: [directionId], references: [id], onDelete: SetNull)
+  practiceType PracticeType? @relation(fields: [practiceTypeId], references: [id], onDelete: SetNull)
+}
+
+// ─── Воронка по шагам ────────────────────────────────────────────────────────
+// Каждый раз когда пользователь переходит на следующий шаг — логируем
+model FunnelEvent {
+  id          Int       @id @default(autoincrement())
+  sessionId   String    // случайный UUID из браузера
+  step        Int       // 1..5
+  stepName    String    // "direction" | "practice" | "place" | "dates" | "student"
+  directionId Int?      // если уже выбрано
+  createdAt   DateTime  @default(now())
+}
+
+// ─── Администраторы ───────────────────────────────────────────────────────────
+model Admin {
+  id           Int      @id @default(autoincrement())
+  username     String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+}

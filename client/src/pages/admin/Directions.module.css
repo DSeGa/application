@@ -1,0 +1,173 @@
+.page { width: 100%; }
+.loading { color: var(--muted); padding: 40px; }
+
+.pageHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.pageTitle {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+/* Form card */
+.formCard {
+  background: #fff;
+  border-radius: 10px;
+  padding: 28px 32px;
+  box-shadow: 0 2px 12px rgba(26,26,46,0.07);
+  margin-bottom: 28px;
+  border-left: 3px solid var(--accent);
+}
+
+.formTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--ink);
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.formGroup label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.formActions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.error {
+  padding: 10px 14px;
+  background: #fdf0f0;
+  border: 1px solid #f5c6cb;
+  border-radius: 6px;
+  color: var(--error);
+  font-size: 0.85rem;
+  margin-top: 8px;
+}
+
+/* Direction list */
+.list { display: flex; flex-direction: column; gap: 12px; }
+
+.dirCard {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(26,26,46,0.07);
+  overflow: hidden;
+  transition: opacity 0.2s;
+}
+.inactive { opacity: 0.55; }
+
+.dirHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.dirHead:hover { background: rgba(200,120,58,0.04); }
+
+.dirInfo { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.dirCode {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+.dirName { font-weight: 600; font-size: 1rem; color: var(--ink); }
+.badge {
+  padding: 2px 8px;
+  background: var(--line);
+  border-radius: 4px;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+.dirCount { font-size: 0.8rem; color: var(--muted); }
+
+.dirActions { display: flex; align-items: center; gap: 8px; }
+.chevron { color: var(--muted); font-size: 1rem; transition: transform 0.25s; margin-left: 6px; }
+
+/* Practice types */
+.ptSection { padding: 0 24px 24px; border-top: 1px solid var(--line); }
+.ptTitle {
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 20px 0 14px;
+}
+
+.ptTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  margin-bottom: 20px;
+}
+.ptTable th {
+  text-align: left;
+  padding: 8px 10px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--line);
+}
+.ptTable td {
+  padding: 10px 10px;
+  border-bottom: 1px solid #f0ebe0;
+  vertical-align: top;
+}
+.ptTable tr:last-child td { border-bottom: none; }
+.inactiveRow { opacity: 0.45; }
+.muted { color: var(--muted); }
+
+.ptActions { display: flex; gap: 6px; white-space: nowrap; }
+
+/* Practice type form */
+.ptForm {
+  background: #faf7f2;
+  border-radius: 8px;
+  padding: 20px 22px;
+  border: 1px solid var(--line);
+}
+.ptFormTitle {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.ptFormGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 700px) {
+  .formGrid, .ptFormGrid { grid-template-columns: 1fr; }
+}
